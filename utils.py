@@ -3,6 +3,7 @@ import json
 from PIL import Image
 import cv2
 import numpy as np
+from pygame import mixer
 
 cascadePath = "haarcascade_frontalface_default.xml"
 faces_library = "faces_lib.json"
@@ -29,7 +30,7 @@ def get_faces_lib(path="faces_lib.json"):
 
 
 # function to get the images and label data
-def get_images_and_labels(path, detector):
+def get_images_and_labels(path):
     detector = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
     imagePaths = [os.path.join(path, f) for f in os.listdir(path)]
     faceSamples = []
@@ -50,3 +51,9 @@ def get_camera(camera_id=0, height=480, width=640):
     cam.set(3, width)  # set video width
     cam.set(4, height)  # set video height
     return cam
+
+
+def get_alarm_sound(path="alarm.wav"):
+    mixer.init()
+    sound = mixer.Sound(path)
+    return sound
