@@ -1,0 +1,4 @@
+dataset
+.ipynb*
+faces_lib.json
+trainer
